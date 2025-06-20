@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Client Side Storage</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>Client Side Storage</h2>
+
+    <input type="text" id="username" placeholder="Enter your name" />
+
+    <div class="btn-group">
+      <button onclick="saveToLocalStorage()">Save to LocalStorage</button>
+      <button onclick="saveToSessionStorage()">Save to SessionStorage</button>
+      <button onclick="saveToCookie()">Save to Cookie</button>
+    </div>
+
+    <button class="load-btn" onclick="loadAll()">Load Saved Data</button>
+
+    <div id="output" class="output-box"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
