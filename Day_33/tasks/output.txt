@@ -1,0 +1,170 @@
+
+PS E:\nithya\Projects_nithya\Dovel_Academy\Day_33\tasks> node app.js
+(node:16152) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:16152) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 
+and will be removed in the next major version
+ MongoDB Connected
+ Student Created: {
+  name: 'Nathiya',
+  age: 21,
+  course: 'MERN',
+  isActive: true,
+  _id: new ObjectId('685fc13234c71313f3a8d080'),
+  __v: 0
+}
+ All Students: [
+  {
+    _id: new ObjectId('685d26dd867a43e28d748a5f'),
+    name: 'Nithya',
+    age: 24,
+    department: 'computerscience'
+  },
+  {
+    _id: new ObjectId('685d26dd867a43e28d748a60'),
+    name: 'Ayesha',
+    age: 22,
+    department: 'physics'
+  },
+  {
+    _id: new ObjectId('685fa43ce07265682b748a5f'),
+    name: 'Anil',
+    subject: 'Maths',
+    Mark: 80
+  },
+  {
+    _id: new ObjectId('685fa43ce07265682b748a60'),
+    name: 'Ravi',
+    subject: 'science',
+    Mark: 65
+  },
+  {
+    _id: new ObjectId('685fa88fe07265682b748a61'),
+    name: 'sheela',
+    subject: 'Maths',
+    Mark: 75
+  },
+  {
+    _id: new ObjectId('685fa88fe07265682b748a62'),
+    name: 'Arjun',
+    subject: 'Maths',
+    Mark: 70
+  },
+  {
+    _id: new ObjectId('685fa88fe07265682b748a63'),
+    name: 'kavya',
+    subject: 'science',
+    Mark: 87
+  },
+  {
+    _id: new ObjectId('685fc13234c71313f3a8d080'),
+    name: 'Nathiya',
+    age: 21,
+    course: 'MERN',
+    isActive: true,
+    __v: 0
+  }
+]
+Update Result: {
+  acknowledged: true,
+  modifiedCount: 1,
+  upsertedId: null,
+  upsertedCount: 0,
+  matchedCount: 1
+}
+ All Students: [
+  {
+    _id: new ObjectId('685d26dd867a43e28d748a5f'),
+    name: 'Nithya',
+    age: 24,
+    department: 'computerscience'
+  },
+  {
+    _id: new ObjectId('685d26dd867a43e28d748a60'),
+    name: 'Ayesha',
+    age: 22,
+    department: 'physics'
+  },
+  {
+    _id: new ObjectId('685fa43ce07265682b748a5f'),
+    name: 'Anil',
+    subject: 'Maths',
+    Mark: 80
+  },
+  {
+    _id: new ObjectId('685fa43ce07265682b748a60'),
+    name: 'Ravi',
+    subject: 'science',
+    Mark: 65
+  },
+  {
+    _id: new ObjectId('685fa88fe07265682b748a61'),
+    name: 'sheela',
+    subject: 'Maths',
+    Mark: 75
+  },
+  {
+    _id: new ObjectId('685fa88fe07265682b748a62'),
+    name: 'Arjun',
+    subject: 'Maths',
+    Mark: 70
+  },
+  {
+    _id: new ObjectId('685fa88fe07265682b748a63'),
+    name: 'kavya',
+    subject: 'science',
+    Mark: 87
+  },
+  {
+    _id: new ObjectId('685fc13234c71313f3a8d080'),
+    name: 'Nathiya',
+    age: 21,
+    course: 'Full Stack Developer',
+    isActive: true,
+    __v: 0
+  }
+]
+Delete Result: { acknowledged: true, deletedCount: 1 }
+ All Students: [
+  {
+    _id: new ObjectId('685d26dd867a43e28d748a5f'),
+    name: 'Nithya',
+    age: 24,
+    department: 'computerscience'
+  },
+  {
+    _id: new ObjectId('685d26dd867a43e28d748a60'),
+    name: 'Ayesha',
+    age: 22,
+    department: 'physics'
+  },
+  {
+    _id: new ObjectId('685fa43ce07265682b748a5f'),
+    name: 'Anil',
+    subject: 'Maths',
+    Mark: 80
+  },
+  {
+    _id: new ObjectId('685fa43ce07265682b748a60'),
+    name: 'Ravi',
+    subject: 'science',
+    Mark: 65
+  },
+  {
+    _id: new ObjectId('685fa88fe07265682b748a61'),
+    name: 'sheela',
+    subject: 'Maths',
+    Mark: 75
+  },
+  {
+    _id: new ObjectId('685fa88fe07265682b748a62'),
+    subject: 'Maths',
+    Mark: 70
+  },
+  {
+    _id: new ObjectId('685fa88fe07265682b748a63'),
+    name: 'kavya',
+    subject: 'science',
+    Mark: 87
+  }
+]

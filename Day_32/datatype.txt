@@ -1,0 +1,13 @@
+Common Data Types in C++
+
+Data Type	Size (bytes)
+bool	        1	
+char	        1	
+int	            4
+short	        2
+long	      4 or 8	
+float	        4	
+double	        8
+long double	  12 or 16	
+
+Sizes may vary depending on the system architecture (32-bit vs 64-bit).

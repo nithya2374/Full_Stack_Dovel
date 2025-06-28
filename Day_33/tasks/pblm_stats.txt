@@ -1,0 +1,64 @@
+///Problem in Concurrent Operations::
+
+When multiple users or processes try to read, write, or update the same document at the same time,
+  you might face issues like:
+
+1. Race Conditions::
+Multiple operations happen at the same time, and the final result depends on which finishes first.
+Example: Two users update the same student’s mark, but the second one overwrites the first.
+
+2. Lost Updates::
+One update overwrites another without knowing it.
+Example: If A sets marks to 90 and B sets it to 85 at the same time, one update gets lost.
+
+3. Inconsistent Data::
+When related data updates are not done together, the data becomes incorrect or mismatched.
+Example: If you deduct money from one account but fail to add it to another (in money transfers).
+
+///Solutions and Techniques:::
+
+1. Use findOneAndUpdate() with Atomic Operators:
+
+Atomic operators like $inc, $set, etc., ensure safe updates even when many users update at once.
+
+Example:
+await Student.findOneAndUpdate(
+  { name: "Nithya" },
+  { $inc: { mark: 5 } }  // safely adds 5 to existing mark
+);
+
+Ensures only one update is applied at a time correctly.
+
+
+2. Optimistic Concurrency Control (OCC):
+
+Mongoose uses a __v field to track changes.
+If two users try to update the same document, only the first one succeeds. The second gets an error.
+Helps avoid conflicting changes.
+
+How to enable:
+
+const studentSchema = new mongoose.Schema({
+  name: String,
+  mark: Number
+}, { optimisticConcurrency: true });
+
+
+3. Transactions (for complex updates):
+
+Used when you need to update multiple documents or collections at once (like in banking apps).
+MongoDB ensures all steps succeed or all fail — not half-updated data.
+
+Example:
+
+const session = await mongoose.startSession();
+session.startTransaction();
+try {
+  await Student.updateOne({ name: "Nithya" }, { $set: { mark: 100 } }, { session });
+  // other related updates can go here
+  await session.commitTransaction();  // apply changes
+} catch (err) {
+  await session.abortTransaction();  // rollback changes
+} finally {
+  session.endSession();
+}

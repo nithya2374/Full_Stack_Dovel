@@ -1,0 +1,188 @@
+------
+
+test> use schoolDB
+switched to db schoolDB
+schoolDB> db.students.find().pretty()
+[
+  {
+    _id: ObjectId('685d26dd867a43e28d748a5f'),
+    name: 'Nithya',
+    age: 24,
+    department: 'computerscience'
+  },
+  {
+    _id: ObjectId('685d26dd867a43e28d748a60'),
+    name: 'Ayesha',
+    age: 22,
+    department: 'physics'
+  }
+]
+schoolDB> db.students.insertMany( [ {name: "Anil" , subject: "Maths" , Mark:80} , {name:"Ravi" ,subject: "science" ,Mark: 65} ])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('685fa43ce07265682b748a5f'),
+    '1': ObjectId('685fa43ce07265682b748a60')
+  }
+}
+schoolDB> db.students.find( { Mark: {$gt:70} })
+[
+  {
+    _id: ObjectId('685fa43ce07265682b748a5f'),
+    name: 'Anil',
+    subject: 'Maths',
+    Mark: 80
+  }
+]
+schoolDB> db.students.find ( {Mark: {$lt:90} )
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:35)
+
+> 1 | db.students.find ( {Mark: {$lt:90} )
+    |                                    ^
+  2 |
+
+schoolDB> db.students.find ( {Mark: {$lt:90} } )
+[
+  {
+    _id: ObjectId('685fa43ce07265682b748a5f'),
+    name: 'Anil',
+    subject: 'Maths',
+    Mark: 80
+  },
+  {
+    _id: ObjectId('685fa43ce07265682b748a60'),
+    name: 'Ravi',
+    subject: 'science',
+    Mark: 65
+  }
+]
+schoolDB> db.stiudents.find ({name:"Anil" , subject: "Maths"})
+
+schoolDB> db.students.find ({name:"Anil" , subject: "Maths"})
+[
+  {
+    _id: ObjectId('685fa43ce07265682b748a5f'),
+    name: 'Anil',
+    subject: 'Maths',
+    Mark: 80
+  }
+]
+schoolDB> db.students.find ( {$or : [ { Mark: {$lt:60}},{name: "Ravi" } ] })
+[
+  {
+    _id: ObjectId('685fa43ce07265682b748a60'),
+    name: 'Ravi',
+    subject: 'science',
+    Mark: 65
+  }
+]
+schoolDB> db.students.find( {$and :[ {Mark: {$lt:50}}, {name:"srija"} ] })
+
+schoolDB> db.students.find( {Mark: {$gt:60, $lt:90} })
+[
+  {
+    _id: ObjectId('685fa43ce07265682b748a5f'),
+    name: 'Anil',
+    subject: 'Maths',
+    Mark: 80
+  },
+  {
+    _id: ObjectId('685fa43ce07265682b748a60'),
+    name: 'Ravi',
+    subject: 'science',
+    Mark: 65
+  }
+]
+schoolDB> db.students.insertMany( [ {name: "sheela" , subject:"Maths", Mark: 75},
+... {name: "Arjun" , subject:"Maths" , Mark:70},{ name: "kavya" ,subject: "science" , Mark:87} ])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('685fa88fe07265682b748a61'),
+    '1': ObjectId('685fa88fe07265682b748a62'),
+    '2': ObjectId('685fa88fe07265682b748a63')
+  }
+}
+schoolDB> db.students.aggregate ([ {$group: {$id_ :{$subject} , avgmarks : {$avg: "$Mark"}}} ])
+ReferenceError: $subject is not defined
+schoolDB> db.students.aggregate ([ {$group: {$id_ :"$subject" , avgmarks: {$avg: "$Mark"} }} ])
+MongoServerError[Location40234]: The field '$id_' must be an accumulator object
+schoolDB> db.students.aggregate ([ {$group: {id_ :"$subject" , avgmarks: {$avg: "$Mark"} }} ])
+MongoServerError[Location40234]: The field 'id_' must be an accumulator object
+schoolDB> db.students.aggregate ([ {$group: {_id :"$subject" , avgmarks: {$avg: "$Mark"} }} ])
+[
+  { _id: 'science', avgmarks: 76 },
+  { _id: null, avgmarks: null },
+  { _id: 'Maths', avgmarks: 75 }
+]
+schoolDB> db.students.aggregate ([ {$group: {_id: "$name" , total:{$sum: "$Mark"} }} ])
+[
+  { _id: 'Ravi', total: 65 },
+  { _id: 'Nithya', total: 0 },
+  { _id: 'sheela', total: 75 },
+  { _id: 'Ayesha', total: 0 },
+  { _id: 'Arjun', total: 70 },
+  { _id: 'kavya', total: 87 },
+  { _id: 'Anil', total: 80 }
+]
+schoolDB> db.students.find().sort({Mark:-1}) .limit(1)
+[
+  {
+    _id: ObjectId('685fa88fe07265682b748a63'),
+    name: 'kavya',
+    subject: 'science',
+    Mark: 87
+  }
+]
+schoolDB> db.createUsers ({ user:"viewer",pwd :"view123",role :[ {role:"read",db:"schoolDB"} ] })
+TypeError: db.createUsers is not a function
+schoolDB> db.createUser ({ user:"viewer",pwd :"view123",role :[ {role:"read",db:"schoolDB"} ] })
+MongoshInvalidInputError: [COMMON-10001] Missing required property: "roles"
+schoolDB> db.createUsers ({ user:"viewer",pwd :"view123",roles :[ {role:"read",db:"schoolDB"} ] })
+TypeError: db.createUsers is not a function
+schoolDB> db.createUser ({ user:"viewer",pwd :"view123",roles :[ {role:"read",db:"schoolDB"} ] })
+{ ok: 1 }
+schoolDB> db.createUser ({ user:"saran",pwd :"saran123",roles :[ {role:"read",db:"schoolDB"} ] })
+{ ok: 1 }
+schoolDB> db.getUsers()
+{
+  users: [
+    {
+      _id: 'schoolDB.saran',
+      userId: UUID('f1136e6a-22cb-4bc0-b612-8c5ebc218e62'),
+      user: 'saran',
+      db: 'schoolDB',
+      roles: [ { role: 'read', db: 'schoolDB' } ],
+      mechanisms: [ 'SCRAM-SHA-1', 'SCRAM-SHA-256' ]
+    },
+    {
+      _id: 'schoolDB.viewer',
+      userId: UUID('4a3e4923-12e9-40c3-aaf7-8669226dc88f'),
+      user: 'viewer',
+      db: 'schoolDB',
+      roles: [ { role: 'read', db: 'schoolDB' } ],
+      mechanisms: [ 'SCRAM-SHA-1', 'SCRAM-SHA-256' ]
+    }
+  ],
+  ok: 1
+}
+schoolDB> db.auth("saran","saran123")
+{ ok: 1 }
+schoolDB> db.dropUser("viewer")
+{ ok: 1 }
+schoolDB> db.getUsers()
+{
+  users: [
+    {
+      _id: 'schoolDB.saran',
+      userId: UUID('f1136e6a-22cb-4bc0-b612-8c5ebc218e62'),
+      user: 'saran',
+      db: 'schoolDB',
+      roles: [ { role: 'read', db: 'schoolDB' } ],
+      mechanisms: [ 'SCRAM-SHA-1', 'SCRAM-SHA-256' ]
+    }
+  ],
+  ok: 1
+}
+schoolDB>
