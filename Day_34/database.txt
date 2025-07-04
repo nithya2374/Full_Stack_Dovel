@@ -1,0 +1,41 @@
+Databases Used by Popular Websites
+
+Facebook:	MySQL, RocksDB, Cassandra	
+Scalable, fast reads	
+Complex setup
+
+Instagram:  PostgreSQL, Redis	
+Reliable, cache supported	
+Needs optimization for scale
+
+Twitter:	MySQL, Redis	
+Speed, caching	
+Hard to manage large traffic
+
+Netflix:	Cassandra, MySQL, DynamoDB	
+Multi-region, scalable	
+Expensive infrastructure
+
+LinkedIn:	Espresso (custom), Kafka, Voldemort	
+Real-time, event-based	
+Not beginner-friendly
+
+YouTube:Bigtable, Spanner, MySQL	
+Handles huge videos, real-time data	
+Proprietary tech (not open source)
+
+Flipkart:MySQL, HBase, Redis	
+Hybrid model – supports transactions + cache	
+Complex multi-DB handling
+
+Snapchat:	Cassandra, Redis
+Fast delivery of snaps, scalable user growth	
+Requires high setup effort
+
+Spotify:	Cassandra, Google Bigtable, PostgreSQL
+Handles millions of songs and user activity	
+Needs real-time streaming support
+
+Pinterest:	MySQL, Redis, HBase, Elasticsearch	
+Fast pin search and image data storage	
+Image-heavy → big data volume

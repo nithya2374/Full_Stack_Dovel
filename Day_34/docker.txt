@@ -1,0 +1,61 @@
+//1. What is Docker?
+
+Docker is a tool that helps you run apps inside containers.
+
+A container is like a small, packed box that includes:
+
+  * Your app
+
+  * The software it needs (Node, Python, etc.)
+
+  * OS-level tools
+
+This makes sure the app works anywhere, even if other people use different computers.
+
+Example: You made an app on your laptop. If you send the Docker container to your friend, it will work exactly the same on their PC too — without errors like “this package is missing.
+
+//2. What is a Dockerfile?
+A Dockerfile is a plain text file that has instructions to build your app's container.
+
+It tells Docker:
+Which base system to use (like Node, Python, etc.)
+
+Where to put your app files
+
+How to install the required packages
+
+How to start the app
+
+Example:
+
+FROM node:18          # Base image
+WORKDIR /app          # Working folder
+COPY . .              # Copy app files
+RUN npm install       # Install packages
+CMD ["npm", "start"]  # Start the app
+
+// 3. What is Docker Compose?
+Sometimes your project needs multiple containers —
+for example:
+
+One container for the backend app
+
+One for the database (MySQL, MongoDB, etc.)
+
+Instead of running them separately, Docker Compose allows you to define everything 
+in one file called docker-compose.yml.
+
+example:
+
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+  db:
+    image: mongo
+    ports:
+      - "27017:27017"
+
+ 
